@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>MoodMate</title>
+
+    <!-- Additional external script for speech recognition -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-speech-api/0.1.0/webspeechapi.min.js"></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <script>
+      // Initialize speech recognition API for handling audio
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      // When speech is detected, process it and send it to the backend
+      recognition.onresult = async (event) => {
+        const transcript = event.results[0][0].transcript;
+        console.log("Recognized Speech:", transcript);
+        
+        // Send the recognized speech to the Flask backend for processing
+        try {
+          const formData = new FormData();
+          formData.append('audio', transcript);  // Here you would append an actual audio file in a real scenario
+          formData.append('language', 'en');  // Language choice
+
+          const response = await fetch('http://localhost:5000/api/rant', {
+            method: 'POST',
+            body: formData,
+          });
+
+          const data = await response.json();
+          console.log(data);
+          // Here you can handle the response (e.g., display the advice, song, etc. on the UI)
+        } catch (error) {
+          console.error("Error sending request to backend:", error);
+        }
+      };
+
+      // Start recording the user's speech
+      function startSpeechRecognition() {
+        recognition.start();
+      }
+
+      // Example of calling the start function, you can tie this to a button click
+      // Example button to trigger speech recognition
+      document.body.insertAdjacentHTML('beforeend', `<button id="start-speech-btn">Start Speech</button>`);
+      document.getElementById('start-speech-btn').addEventListener('click', startSpeechRecognition);
+
+    </script>
+  </body>
+</html>

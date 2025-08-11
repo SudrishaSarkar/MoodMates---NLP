@@ -1,0 +1,104 @@
+
+/* General styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #fddddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.homepage {
+  text-align: center;
+  background-color: #fff5f5;
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header h1 {
+  font-size: 48px;
+  color: #5b856a;
+  margin: 0;
+}
+
+.header p {
+  font-size: 18px;
+  color: #7f8f7d;
+  margin: 5px 0 20px 0;
+}
+
+/* Robot section */
+.robot-section {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
+.robot-image {
+  height: 200px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: -20px;
+  left: 220px;
+  width: 250px;
+  background: #ffffff;
+  border: 2px solid #5b856a;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #5b856a;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input section */
+.input-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-box {
+  width: 60%;
+  padding: 10px;
+  border: 2px solid #5b856a;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+}
+
+.send-button {
+  margin-left: 10px;
+  background-color: #5b856a;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.send-button:hover {
+  background-color: #497152;
+}
+
+/* Animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+} 
