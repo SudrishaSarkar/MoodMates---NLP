@@ -1,8 +1,7 @@
-
 /* General styles */
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   background-color: #fddddd;
   display: flex;
   justify-content: center;
@@ -90,6 +89,98 @@ body {
   background-color: #497152;
 }
 
+/* Messages Section */
+.messages-section {
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 20px 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message-box {
+  padding: 12px 18px;
+  border-radius: 18px;
+  max-width: 70%;
+  word-wrap: break-word;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.user-box {
+  background-color: #e8f5e8;
+  color: #2d5a2d;
+  border: 1px solid #c8e6c8;
+  align-self: flex-end;
+  margin-left: auto;
+  text-align: right;
+}
+
+.chatbot-box {
+  background-color: #35522b;
+  color: white;
+  align-self: flex-start;
+  margin-right: auto;
+  text-align: left;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Improved layout */
+.homepage {
+  text-align: center;
+  background-color: #fff5f5;
+  padding: 20px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  height: 90vh;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-section {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin: 20px 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input section improvements */
+.input-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  padding: 10px 0;
+}
+
+.input-box {
+  width: 70%;
+  padding: 12px 18px;
+  border: 2px solid #5b856a;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+}
+
+.send-button {
+  margin-left: 15px;
+  background-color: #5b856a;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  min-width: 50px;
+}
+
 /* Animation */
 @keyframes float {
   0% {
@@ -101,4 +192,4 @@ body {
   100% {
     transform: translateY(0px);
   }
-} 
+}
