@@ -1,21 +1,11 @@
 package com.moodmates.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
-import jakarta.validation.constraints.NotBlank;
+import java.util.UUID;
 
-/**
- * DTO for chat request from frontend
- */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ChatRequest {
-    
-    @NotBlank(message = "Message text is required")
+    private UUID userId;
     private String message;
-    
-    private String conversationId; // Optional, for continuing conversations
-} 
+}

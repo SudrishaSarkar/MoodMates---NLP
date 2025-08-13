@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -8,9 +8,16 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   // State to hold all messages (both user and chatbot)
   const [messages, setMessages] = useState([]);
+  // Ref for auto-scrolling to bottom
+  const messagesEndRef = useRef(null);
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   // Handler for sending message
-  const handleSendClick = () => {
+  const handleSendClick = async () => {
     if (inputValue.trim()) {
       // Add the user's message to the messages array
       setMessages((prevMessages) => [
@@ -18,17 +25,58 @@ function App() {
         { type: "user", text: inputValue },
       ]);
 
-      // Simulate a chatbot response (You can replace this with a real response)
-      setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { type: "chatbot", text: "I am here to listen!" },
-        ]);
-      }, 1000); // Add a slight delay for the chatbot response
+      // Store the current message to send to API
+      const userMessage = inputValue;
 
-      // Reset the input box
+      // Reset the input box immediately
       setInputValue("");
       setShowGif(false); // Hide the GIF if needed
+
+      try {
+        // Generate a simple UUID for the user (you can make this persistent later)
+        const userId = "550e8400-e29b-41d4-a716-446655440001";
+
+        // Call your backend API
+        const response = await fetch("http://localhost:8080/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: userId,
+            message: userMessage,
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+
+          // Add the chatbot's response to the messages array
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            { type: "chatbot", text: data.botReply },
+          ]);
+        } else {
+          // Handle API error
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              type: "chatbot",
+              text: "Sorry, I'm having trouble right now. Please try again.",
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error("Error calling API:", error);
+        // Handle network error
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            type: "chatbot",
+            text: "Sorry, I can't connect right now. Please check your connection.",
+          },
+        ]);
+      }
     }
   };
 
@@ -103,6 +151,7 @@ function App() {
             {message.text}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="input-section">

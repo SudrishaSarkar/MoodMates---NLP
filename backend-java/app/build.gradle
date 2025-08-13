@@ -36,9 +36,7 @@ dependencies {
    annotationProcessor 'org.projectlombok:lombok:1.18.30'
     
     // Database
-    // Database
-    testImplementation 'com.h2database:h2'
-    implementation 'org.postgresql:postgresql' //  PostgreSQL
+    implementation 'org.postgresql:postgresql' // PostgreSQL driver
     
     // JWT for authentication
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
