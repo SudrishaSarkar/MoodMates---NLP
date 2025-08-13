@@ -1,0 +1,12 @@
+{
+  "java.home": "C:\\Sudrisha\\Western College Undergraduate\\Admin\\Desktop\\11-22-2022 912A2X18K\\D\\Supriya\\Ziya\\ORACLE JDK JAVA\\Oracle_JDK-23",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-23",
+      "path": "C:\\Sudrisha\\Western College Undergraduate\\Admin\\Desktop\\11-22-2022 912A2X18K\\D\\Supriya\\Ziya\\ORACLE JDK JAVA\\Oracle_JDK-23",
+      "default": true
+    }
+  ],
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "automatic"
+}
